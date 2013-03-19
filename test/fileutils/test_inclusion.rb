@@ -21,8 +21,4 @@ class TestFileUtilsInclusion < Test::Unit::TestCase
     assert ::FileUtils.foo?
   end
 
-  def test_includes_streamutils
-    assert_include(::FileUtils::Verbose.private_instance_methods(true), :fu_stream_blksize)
-  end
-
 end
