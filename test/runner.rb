@@ -1,5 +1,5 @@
 if defined?(::FileUtils)
-  warn "Original FileUtils library is already loaded!"
+  warn "WARNING! Original FileUtils library is already loaded!"
 end
 
 root = File.expand_path('..', File.dirname(__FILE__))
