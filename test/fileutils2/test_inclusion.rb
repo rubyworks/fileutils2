@@ -10,10 +10,10 @@ class TestFileUtils2Inclusion < Test::Unit::TestCase
   def test_include_into_all_submodules
     ::FileUtils2.send(:include, Foo)
 
-    assert_include ::FileUtils2.ancestors, Foo
-    assert_include ::FileUtils2::NoWrite.ancestors, Foo
-    assert_include ::FileUtils2::Verbose.ancestors, Foo
-    assert_include ::FileUtils2::DryRun.ancestors, Foo
+    assert_includes ::FileUtils2.ancestors, Foo
+    assert_includes ::FileUtils2::NoWrite.ancestors, Foo
+    assert_includes ::FileUtils2::Verbose.ancestors, Foo
+    assert_includes ::FileUtils2::DryRun.ancestors, Foo
 
     assert ::FileUtils2::NoWrite.foo?
     assert ::FileUtils2::Verbose.foo?
