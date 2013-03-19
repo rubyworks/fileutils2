@@ -99,7 +99,7 @@ FileUtils2 fixes all this by doing three thing:
 With these changes the above code becomes simply:
 
 ```ruby
-    module FileUtils
+    module FileUtils2
       def ln_r(dir, dest, options={})
         fu_check_options options, OPT_TABLE['ln_r']
         ...
@@ -117,6 +117,35 @@ through its paces. (At least, that was the plan. See "Why a Gem" below.)
 Also note that this refactorization does not change the underlying functionality
 or the FileUtils methods in any way. They remain the same as in Ruby's standard
 library.
+
+
+## Overriding FileUtils
+
+You can use FileUtils2 in place of FileUtils simple by setting FileUtils
+equal to FileUtils2.
+
+```ruby
+    require 'fileutils2'
+    FileUtils = FileUtils2
+```
+
+It will issue a warning if FileUtils is already loaded, but it should work fine
+in either case. In fact, it may be wise to first `require 'fileutils'` in anycase
+to make sure it's not loaded later by some other script, which could cause some
+unspecified results due to method clobbering. Of course there should plenty
+of warnings in the output in that case, so you could just keep an eye out for
+it instead.
+
+For the sake of simply being overly thurough, included in the gem is a script
+that takes care of most of this for you called, `override.rb`.
+
+```ruby
+    require 'fileutils2/override'
+```
+
+It requires fileutils2.rb for you and sets `FileUtils = FileUtils2` while
+supressing the usual warning. It doesn't preload the old fileutils.rb library
+first though. That's your call.
 
 
 ## Why a Gem?
