@@ -4,6 +4,8 @@ begin
 rescue
 end
 
+require 'minitest/autorun'
+
 root = File.expand_path('..', File.dirname(__FILE__))
 
 $LOAD_PATH.unshift(File.join(root, 'lib'))
