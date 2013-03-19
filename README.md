@@ -149,6 +149,18 @@ supressing the usual warning. It doesn't preload the old fileutils.rb library
 first though. That's your call.
 
 
+## JRuby and Rubinius Users
+
+FileUtils2, as well as the original FileUtils library for that matter, produce
+a few test failures (out of a 1000+) when run again JRuby or Rubinius. At this
+point it is unclear exactly what the issues are. If you are involved in either
+of these projects and can spare a little time to try and fix these issues, that
+would be really great of you! Have a look at the
+[Rubinius build](https://travis-ci.org/rubyworks/fileutils2/jobs/5634466)
+and the [JRuby build](https://travis-ci.org/rubyworks/fileutils2/jobs/5634467)
+for these test results.
+
+
 ## Why a Gem?
 
 You might be wondering why this is a Gem and not part of Ruby's standard library.
