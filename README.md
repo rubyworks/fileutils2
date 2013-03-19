@@ -7,7 +7,6 @@
 [Report Issue](http://github.com/rubyworks/fileutils2/issues) /
 [Source Code](http://github.com/rubyworks/fileutils2)
 
-[![Build Status](https://secure.travis-ci.org/rubyworks/fileutils2.png)](http://travis-ci.org/rubyworks/fileutils2)
 [![Gem Version](https://badge.fury.io/rb/fileutils2.png)](http://badge.fury.io/rb/fileutils2) &nbsp; &nbsp;
 [![Flattr Me](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/324911/Rubyworks-Ruby-Development-Fund)
 
@@ -139,6 +138,9 @@ professional character, but it is clearly not the case, as is evidenced by
 the fact that they were not willing to discuss the design, let alone actually fix
 it, but instead summarily declared themselves the new maintainers of the code,
 reverted the code to the old design and pronounced the issue closed. Period.
+
+* https://bugs.ruby-lang.org/issues/4970
+* https://bugs.ruby-lang.org/issues/7958
 
 
 ## Legal
