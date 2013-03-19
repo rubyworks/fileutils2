@@ -1,3 +1,5 @@
+$stderr.puts "RIGHT LIBRARY!"
+
 #
 # = fileutils.rb
 #
