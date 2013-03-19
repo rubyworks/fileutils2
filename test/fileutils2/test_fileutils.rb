@@ -998,9 +998,9 @@ class TestFileUtils2
     th = Thread.new { read.read }
 
     touch 'tmp/a'
-    chmod 0700, 'tmp/a', verbose: true
+    chmod 0700, 'tmp/a', :verbose => true
     assert_equal 0700, File.stat('tmp/a').mode & 0777
-    chmod 0500, 'tmp/a', verbose: true
+    chmod 0500, 'tmp/a', :verbose => true
     assert_equal 0500, File.stat('tmp/a').mode & 0777
 
     $stderr.close
