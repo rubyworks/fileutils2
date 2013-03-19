@@ -1,6 +1,6 @@
 # FileUtils2
 
-*A Refeactorization of Ruby's FileUtils Standard Library*
+*A Refactorization of Ruby's Standard FileUtils Library*
 
 [Homepage](http://rubyworks.github.com/fileutils2) /
 [Documentation](http://rubydoc.info/gems/fileutils2) /
@@ -14,36 +14,39 @@
 
 ## About
 
-FileUtils as provided in Ruby sufferes from the following design flaws:
+FileUtils as provided in Ruby suffers from the following design issues:
 
 1. By using `module_function` FileUtils creates two copies of every method.
-   Overridding an instance method will not override the correspoonding class
+   Overriding an instance method will not override the corresponding class
    method, and vice-versa.
 
 2. The design makes it inordinately more difficult to properly extend 
    FileUtils than it needs to be, because one has to manually ensure any
-   new methods to Fileutisl are also added to all FileUtils submodules.
+   new method added to FileUtils are also added to the submodules.
 
-3. The meta-programming aspec of the design requires the direct modification
+3. The meta-programming aspect of the design requires the direct modification
    of a constant, `OPT_TABLE`.
 
-4. Ruby's Module Inclusion Problem prevent extension modules form being included
-   into FileUtils without additional steps being take to include the module
+4. Ruby's Module Inclusion Problem prevents extension modules from being included
+   into FileUtils without additional steps being taken to include the module
    in every submodule as well.
 
 Lets take a simple example. Lets say we want to add a recursive linking
 method. 
 
+```ruby
     module FileUtils
       def ln_r(dir, dest, options={})
         ...
       end
       module_function :ln_r
-    end
+  end
+```
 
-That would seem like the right code, would it not? Unforunately you would be
+That would seem like the right code, would it not? Unfortunately you would be
 way off the mark. Instead one would need to do the following:
 
+```ruby
     module FileUtils
       OPT_TABLE['ln_r'] = [:force, :noop, :verbose]
 
@@ -68,6 +71,7 @@ way off the mark. Instead one would need to do the following:
         end
       end
     end
+```
 
 FileUtils2 fixes all this by doing three thing:
 
@@ -77,6 +81,7 @@ FileUtils2 fixes all this by doing three thing:
 
 With these changes the above code becomes simply:
 
+```ruby
     module FileUtils
       def ln_r(dir, dest, options={})
         fu_check_options options, OPT_TABLE['ln_r']
@@ -85,21 +90,22 @@ With these changes the above code becomes simply:
 
       define_command('ln_r', :force, :noop, :verbose)
     end
+```
 
-Notice we still have to check the `OPT_TABLE` for supported options. So
-there is still room for some improvement in the design. This "second phase"
-will come later, after the initial phase has been put through the pacses.
-At least, that was the plan.
+Notice we still check the `OPT_TABLE` to ensure only the supported options
+are provided. So there is still room for some improvement in the design.
+This "second phase" will come later, after the initial phase has been put 
+through its paces. (At least, that was the plan. See "Why a Gem" below.)
 
-Also note that this refactorization does not chanage the underlying functionality
-or the FileUtils methods in any way. They remain the same as in Ruby standard
+Also note that this refactorization does not change the underlying functionality
+or the FileUtils methods in any way. They remain the same as in Ruby's standard
 library.
 
 
 ## Why a Gem?
 
 You might be wondering why this is a Gem and not part of Ruby's standard library.
-Unfortunatel, due to to what I beleive to be nothing more than "clique politics"
+Unfortunately, due to to what I believe to be nothing more than "clique politics"
 among some of the  Ruby Core members, this code has been rejected.
 
 Actually it was accepted, but after the discovery a bug (easily fixed) it was
@@ -107,13 +113,13 @@ reverted. Despite the code passing all tests, and the fact that this bug made it
 clear that the tests themselves were missing something (that's a good thing to 
 discover!), the code was reverted to the old design. Sadly, I am certain there
 was no other reason for it than the simple fact that the three main core members
-from Seattle.rb begrude me, and go out ther way to undermine everything I do.
-This behavior is farily well documented in the archives of the ruby-talk mailing
+from Seattle.rb begrudge me, and go out their way to undermine everything I do.
+This behavior is fairly well documented in the archives of the ruby-talk mailing
 list. I don't like to think that their personal opinions of me would influence
-the design of the Ruby programming language, which should be of the upmost
+the design of the Ruby programming language, which should be of the utmost
 professional character, but it is clearly not the case, as is evidenced by
-the fact that they were not willing to discuss the design, let alone actuall fix
-it, but instead summarily decalared themselves the new maintainers of the code,
+the fact that they were not willing to discuss the design, let alone actually fix
+it, but instead summarily declared themselves the new maintainers of the code,
 reverted the code to the old design and pronounced the issue closed. Period.
 
 
@@ -126,5 +132,5 @@ Copyright (c) 2000 Minero Aoki
 This program is distributed under the terms of the
 [BSD-2-Clause](http://www.spdx.org/licenses/BSD-2-Clause) license.
 
-See LICNESE.txt file for details.
+See LICENSE.txt file for details.
 
