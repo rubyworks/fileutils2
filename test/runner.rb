@@ -1,4 +1,4 @@
-if definied?(::FileUtils)
+if defined?(::FileUtils)
   warn "Fail! FileUtils is already loaded!"
 else
   warn "Okay! FileUtils is not already loaded."
