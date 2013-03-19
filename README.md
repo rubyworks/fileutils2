@@ -56,19 +56,37 @@ way off the mark. Instead one would need to do the following:
       end
       module_function :ln_r
 
-      [Verbose, NoWrite, DryRun].each do |submodule|
-        submodule.module_eval do
-          include FileUtils
-          ::FileUtils.collect_method(:verbose).each do |name|
-            module_eval(<<-EOS, __FILE__, __LINE__ + 1)
-              def #{name}(*args)
-                super(*fu_update_option(args, :verbose => true))
-              end
-              private :#{name}
-            EOS
+      module Verbose
+        include FileUtils
+        module_eval(<<-EOS, __FILE__, __LINE__ + 1)
+          def ln_r(*args)
+            super(*fu_update_option(args, :verbose => true))
           end
-          extend self
-        end
+          private :ln_r
+        EOS
+        extend self
+      end
+
+      module NoWrite
+        include FileUtils
+        module_eval(<<-EOS, __FILE__, __LINE__ + 1)
+          def ln_r(*args)
+            super(*fu_update_option(args, :noop => true))
+          end
+          private :ln_r
+        EOS
+        extend self
+      end
+
+      module DryRun
+        include FileUtils
+        module_eval(<<-EOS, __FILE__, __LINE__ + 1)
+          def ln_r(*args)
+            super(*fu_update_option(args, :noop => true, :verbose => true))
+          end
+          private :ln_r
+        EOS
+        extend self
       end
     end
 ```
