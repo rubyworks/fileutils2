@@ -1,16 +1,16 @@
-require 'fileutils'
+require 'fileutils2'
 require 'test/unit'
 
-class TestFileUtils < Test::Unit::TestCase
+class TestFileUtils2 < Test::Unit::TestCase
 end
 
 ##
 # These tests are reused in the FileUtils::Verbose, FileUtils::NoWrite and
 # FileUtils::DryRun tests
 #
-module TestFileUtils::Visibility
+module TestFileUtils2::Visibility
 
-  FileUtils::METHODS.each do |m|
+  FileUtils2::METHODS.each do |m|
     define_method "test_singleton_visibility_#{m}" do
       assert @fu_module.respond_to?(m, true),
              "#{@fu_module}.#{m} is not defined"
@@ -26,7 +26,7 @@ module TestFileUtils::Visibility
     end
   end
 
-  FileUtils::StreamUtils_.private_instance_methods.each do |m|
+  FileUtils2::StreamUtils_.private_instance_methods.each do |m|
     define_method "test_singleton_visibility_#{m}" do
       assert @fu_module.respond_to?(m, true),
              "#{@fu_module}\##{m} is not defined"

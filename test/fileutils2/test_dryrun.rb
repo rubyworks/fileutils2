@@ -1,19 +1,19 @@
 # $Id$
 
-require 'fileutils'
-require 'fileutils/visibility_tests'
-require 'fileutils/clobber'
+require 'fileutils2'
+require 'fileutils2/visibility_tests'
+require 'fileutils2/clobber'
 require 'test/unit'
 
-class TestFileUtilsDryRun < Test::Unit::TestCase
+class TestFileUtils2DryRun < Test::Unit::TestCase
 
-  include FileUtils::DryRun
-  include TestFileUtils::Clobber
-  include TestFileUtils::Visibility
+  include FileUtils2::DryRun
+  include TestFileUtils2::Clobber
+  include TestFileUtils2::Visibility
 
   def setup
     super
-    @fu_module = FileUtils::DryRun
+    @fu_module = FileUtils2::DryRun
   end
 
 end

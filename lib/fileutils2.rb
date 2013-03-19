@@ -1,5 +1,3 @@
-$stderr.puts "RIGHT LIBRARY!"
-
 #
 # = fileutils.rb
 #
@@ -83,8 +81,7 @@ $stderr.puts "RIGHT LIBRARY!"
 # files/directories.  This equates to passing the <tt>:noop</tt> and
 # <tt>:verbose</tt> flags to methods in FileUtils.
 #
-
-module FileUtils
+module FileUtils2
   @fileutils_output  = $stderr
   @fileutils_label   = ''
   extend self
@@ -109,7 +106,7 @@ module FileUtils
   # methods in FileUtils.
   #
   module Verbose
-    include FileUtils
+    include FileUtils2
     @fileutils_output  = $stderr
     @fileutils_label   = ''
     extend self
@@ -121,7 +118,7 @@ module FileUtils
   # to methods in FileUtils.
   #
   module NoWrite
-    include FileUtils
+    include FileUtils2
     @fileutils_output  = $stderr
     @fileutils_label   = ''
     extend self
@@ -134,7 +131,7 @@ module FileUtils
   # to methods in FileUtils.
   #
   module DryRun
-    include FileUtils
+    include FileUtils2
     @fileutils_output  = $stderr
     @fileutils_label   = ''
     extend self
@@ -1684,7 +1681,7 @@ private
   #
   #   p FileUtils.commands  #=> ["chmod", "cp", "cp_r", "install", ...]
   #
-  def FileUtils.commands
+  def self.commands
     OPT_TABLE.keys
   end
 
@@ -1693,7 +1690,7 @@ private
   #
   #   p FileUtils.options  #=> ["noop", "force", "verbose", "preserve", "mode"]
   #
-  def FileUtils.options
+  def self.options
     OPT_TABLE.values.flatten.uniq.map {|sym| sym.to_s }
   end
 
@@ -1704,7 +1701,7 @@ private
   #   p FileUtils.have_option?(:rm, :force)    #=> true
   #   p FileUtils.have_option?(:rm, :perserve) #=> false
   #
-  def FileUtils.have_option?(mid, opt)
+  def self.have_option?(mid, opt)
     li = OPT_TABLE[mid.to_s] or raise ArgumentError, "no such method: #{mid}"
     li.include?(opt)
   end
@@ -1714,7 +1711,7 @@ private
   #
   #   p FileUtils.options(:rm)  #=> ["noop", "verbose", "force"]
   #
-  def FileUtils.options_of(mid)
+  def self.options_of(mid)
     OPT_TABLE[mid.to_s].map {|sym| sym.to_s }
   end
 
@@ -1723,7 +1720,7 @@ private
   #
   #   p FileUtils.collect_method(:preserve) #=> ["cp", "cp_r", "copy", "install"]
   #
-  def FileUtils.collect_method(opt)
+  def self.collect_method(opt)
     OPT_TABLE.keys.select {|m| OPT_TABLE[m].include?(opt) }
   end
 

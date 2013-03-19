@@ -1,17 +1,17 @@
 # $Id$
 
-require 'fileutils'
-require 'fileutils/visibility_tests'
+require 'fileutils2'
+require 'fileutils2/visibility_tests'
 require 'test/unit'
 
-class TestFileUtilsVerbose < Test::Unit::TestCase
+class TestFileUtils2Verbose < Test::Unit::TestCase
 
-  include FileUtils::Verbose
-  include TestFileUtils::Visibility
+  include FileUtils2::Verbose
+  include TestFileUtils2::Visibility
 
   def setup
     super
-    @fu_module = FileUtils::Verbose
+    @fu_module = FileUtils2::Verbose
   end
 
 end

@@ -1,12 +1,12 @@
-require 'fileutils'
-require 'fileutils/fileasserts'
+require 'fileutils2'
+require 'fileutils2/fileasserts'
 require 'tmpdir'
 require 'test/unit'
 
-class TestFileUtils < Test::Unit::TestCase
+class TestFileUtils2 < Test::Unit::TestCase
 end
 
-module TestFileUtils::Clobber
+module TestFileUtils2::Clobber
   include Test::Unit::FileAssertions
 
   def my_rm_rf(path)

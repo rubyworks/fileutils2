@@ -1,18 +1,19 @@
 # $Id$
 
-require 'fileutils'
-require 'fileutils/fileasserts'
+require 'fileutils2'
+require 'fileutils2/fileasserts'
+
 require 'pathname'
 require 'tmpdir'
 require 'test/unit'
 
-class TestFileUtils < Test::Unit::TestCase
+class TestFileUtils2 < Test::Unit::TestCase
   TMPROOT = "#{Dir.tmpdir}/fileutils.rb.#{$$}"
   include Test::Unit::FileAssertions
 end
 
 prevdir = Dir.pwd
-tmproot = TestFileUtils::TMPROOT
+tmproot = TestFileUtils2::TMPROOT
 Dir.mkdir tmproot unless File.directory?(tmproot)
 Dir.chdir tmproot
 
@@ -73,19 +74,19 @@ end
 Dir.chdir prevdir
 Dir.rmdir tmproot
 
-class TestFileUtils
+class TestFileUtils2
 
-  include FileUtils
+  include FileUtils2
 
   def check_singleton(name)
-    assert_respond_to ::FileUtils, name
+    assert_respond_to ::FileUtils2, name
   end
 
   def my_rm_rf(path)
     if File.exist?('/bin/rm')
       system %Q[/bin/rm -rf "#{path}"]
     else
-      FileUtils.rm_rf path
+      FileUtils2.rm_rf path
     end
   end
 
@@ -499,7 +500,7 @@ class TestFileUtils
 
     # [ruby-dev:39345]
     touch 'tmp/[rmtmp]'
-    FileUtils.rm_f 'tmp/[rmtmp]'
+    FileUtils2.rm_f 'tmp/[rmtmp]'
     assert_file_not_exist 'tmp/[rmtmp]'
   end
 

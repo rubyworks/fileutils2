@@ -1,24 +1,24 @@
-require 'fileutils'
+require 'fileutils2'
 require 'test/unit'
 
-class TestFileUtilsInclusion < Test::Unit::TestCase
+class TestFileUtils2Inclusion < Test::Unit::TestCase
 
   module Foo
     def foo?; true; end
   end
 
   def test_include_into_all_submodules
-    ::FileUtils.send(:include, Foo)
+    ::FileUtils2.send(:include, Foo)
 
-    assert_include ::FileUtils.ancestors, Foo
-    assert_include ::FileUtils::NoWrite.ancestors, Foo
-    assert_include ::FileUtils::Verbose.ancestors, Foo
-    assert_include ::FileUtils::DryRun.ancestors, Foo
+    assert_include ::FileUtils2.ancestors, Foo
+    assert_include ::FileUtils2::NoWrite.ancestors, Foo
+    assert_include ::FileUtils2::Verbose.ancestors, Foo
+    assert_include ::FileUtils2::DryRun.ancestors, Foo
 
-    assert ::FileUtils::NoWrite.foo?
-    assert ::FileUtils::Verbose.foo?
-    assert ::FileUtils::DryRun.foo?
-    assert ::FileUtils.foo?
+    assert ::FileUtils2::NoWrite.foo?
+    assert ::FileUtils2::Verbose.foo?
+    assert ::FileUtils2::DryRun.foo?
+    assert ::FileUtils2.foo?
   end
 
 end
