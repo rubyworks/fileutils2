@@ -7,8 +7,8 @@
 [Report Issue](http://github.com/rubyworks/fileutils2/issues) /
 [Source Code](http://github.com/rubyworks/fileutils2)
 
-[![Gem Version](https://badge.fury.io/rb/fileutils2.png)](http://badge.fury.io/rb/fileutils2)
-[![Build Status](https://secure.travis-ci.org/rubyworks/fileutils2.png)](http://travis-ci.org/rubyworks/fileutils2) &nbsp; &nbsp;
+[![Build Status](https://secure.travis-ci.org/rubyworks/fileutils2.png)](http://travis-ci.org/rubyworks/fileutils2)
+[![Gem Version](https://badge.fury.io/rb/fileutils2.png)](http://badge.fury.io/rb/fileutils2) &nbsp; &nbsp;
 [![Flattr Me](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/324911/Rubyworks-Ruby-Development-Fund)
 
 
