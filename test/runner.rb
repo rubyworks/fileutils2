@@ -6,6 +6,7 @@ end
 
 root = File.expand_path('..', File.dirname(__FILE__))
 
+$LOAD_PATH.unshift(File.join(root, 'test'))
 $LOAD_PATH.unshift(File.join(root, 'lib'))
 
 require 'minitest/autorun'

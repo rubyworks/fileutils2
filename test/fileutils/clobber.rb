@@ -1,7 +1,7 @@
 require 'fileutils'
-require 'test/unit'
+require 'fileutils/fileasserts'
 require 'tmpdir'
-require_relative 'fileasserts'
+require 'test/unit'
 
 class TestFileUtils < Test::Unit::TestCase
 end

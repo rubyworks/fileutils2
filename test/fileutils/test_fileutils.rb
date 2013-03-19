@@ -1,7 +1,7 @@
 # $Id$
 
 require 'fileutils'
-require_relative 'fileasserts'
+require 'fileutils/fileasserts'
 require 'pathname'
 require 'tmpdir'
 require 'test/unit'

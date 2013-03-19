@@ -1,8 +1,8 @@
 # $Id$
 
 require 'fileutils'
+require 'fileutils/clobber'
 require 'test/unit'
-require_relative 'clobber'
 
 class TestFileUtilsNoWrite < Test::Unit::TestCase
 
