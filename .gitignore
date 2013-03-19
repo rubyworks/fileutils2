@@ -1,0 +1,9 @@
+*.gem
+*.lock
+.ergo/digest
+.yardoc
+doc/
+log/
+pkg/
+tmp/
+web/

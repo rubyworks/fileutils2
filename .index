@@ -1,0 +1,57 @@
+---
+revision: 2013
+type: ruby
+sources:
+- var
+authors:
+- name: Trans
+  email: transfire@gmail.com
+- name: Minero Aoki
+organizations: []
+requirements:
+- groups:
+  - test
+  development: true
+  name: minitest
+- groups:
+  - build
+  development: true
+  name: ergo
+conflicts: []
+alternatives: []
+resources:
+- type: home
+  uri: http://rubyworks.github.com/fileutils2
+  label: Homepage
+- type: code
+  uri: http://github.com/rubyworks/fileutils2
+  label: Source Code
+- type: docs
+  uri: http://rubydoc.info/gems/fileutils2
+  label: Documentation
+- type: bugs
+  uri: http://github.com/rubyworks/fileutils2/issues
+  label: Issue Tracker
+repositories:
+- name: upstream
+  scm: git
+  uri: git://github.com/rubyworks/fileutils2.git
+categories: []
+copyrights:
+- holder: Rubyworks
+  year: '2011'
+  license: BSD-2-Clause
+- holder: Minero Aoki
+  year: '2000'
+  license: Ruby
+customs: []
+paths:
+  lib:
+  - lib
+created: '2011-07-04'
+summary: FileUtils refactored
+title: FileUtils2
+version: 0.2.0
+name: fileutils2
+description: FileUtils2 is an improved design of Ruby's built-in FileUtils library.
+date: '2013-03-19'
