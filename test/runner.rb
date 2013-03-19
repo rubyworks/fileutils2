@@ -1,7 +1,7 @@
-begin
-  FileUtils
-  raise "FileUtils is already loaded!"
-rescue
+if definied?(::FileUtils)
+  warn "Fail! FileUtils is already loaded!"
+else
+  warn "Okay! FileUtils is not already loaded."
 end
 
 root = File.expand_path('..', File.dirname(__FILE__))
