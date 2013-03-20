@@ -120,6 +120,41 @@ or the FileUtils methods in any way. They remain the same as in Ruby's standard
 library.
 
 
+## Mixins for FileUtils
+
+Of course it might be unusual to want to include a mixin module into FileUtils.
+Nonetheless it should still be possible and not be inordinately mind-boggling
+to do so. With FileUtils2 it is almost as easy as simple as just including the
+mixin module. But there is still the `define_command` method that must be
+invoked. Thankfully it is not difficult to get that call in.
+
+For the sake of example lets say the above `#ln_r` method is nicely namespaced
+in it's own module and we wish to extend FileUtils with it.
+
+```ruby
+    module MyApp::FileUtilsMixin
+      def self.included(fileutils)
+        fileutils.module_eval do
+          define_command('ln_r', :force, :noop, :verbose)
+        end
+      end
+
+      def ln_r(dir, dest, options={})
+        fu_check_options options, OPT_TABLE['ln_r']
+        ...
+      end
+    end
+
+    module FileUtils
+      include MyApp::FileUtilsMixin
+    end
+```
+
+Notice that defining the `included` callback, we were able to invoke the
+`define_command` method on the FileUtils module just as if we were adding
+the new method directly.
+
+
 ## Overriding FileUtils
 
 You can use FileUtils2 in place of FileUtils simple by setting FileUtils
